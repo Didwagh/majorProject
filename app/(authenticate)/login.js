@@ -39,15 +39,16 @@ import {
             email: email,
             password: password
         }
-  
-        // console.log(user)
-  
-        axios.post("https://server-51or.onrender.com/login", user).then((response) => {
-         
+        console.log("j1");
+        axios
+          .post("http://localhost:2525/api/auth/login", user)
+          .then((response) => {
             const token = response.data.token;
-           const MF = AsyncStorage.setItem("authToken",token);
-            router.replace("/(tabs)/home")
-        })
+            const MF = AsyncStorage.setItem("authToken", token);
+            router.replace("/(tabs)/home");
+          });
+          
+        console.log("j2");
     }
     return (
       <SafeAreaView
@@ -55,7 +56,8 @@ import {
       >
         <View>
           <Image
-            style={{ width: 150, height: 100, resizeMode: "contain" }}
+            style={{ width: 150, height: 100,  }}
+            resizeMode="contain"
             source={{
               uri: "https://www.freepnglogos.com/uploads/linkedin-logo-transparent-png-25.png",
             }}

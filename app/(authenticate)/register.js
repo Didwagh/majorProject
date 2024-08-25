@@ -23,6 +23,7 @@ import {
     const [name, setName] = useState("");
     const [image, setImage] = useState("");
     const router = useRouter();
+
     const handleRegister = () => {
         console.log("hello")
         const user = {
@@ -31,18 +32,27 @@ import {
             password:password,
             profileImage:image
         }
-  
-        axios.post("https://server-51or.onrender.com/register",user).then((response) => {
+        axios
+          .post("http://localhost:2525/api/auth/signup", user)
+          .then((response) => {
             console.log(response);
-            Alert.alert("Registration successful","You have been registered successfully");
+            Alert.alert(
+              "Registration successful",
+              "You have been registered successfully"
+            );
             setName("");
             setEmail("");
             setPassword("");
             setImage("");
-        }).catch((error) => {
-            Alert.alert("Registration failed","An error occurred while registering");
-            console.log("registration failed",error)
-        });
+            console.log("h1");
+          })
+          .catch((error) => {
+            Alert.alert(
+              "Registration failed",
+              "An error occurred while registering"
+            );
+            console.log("registration failed", error);
+          });
     }
     return (
       <SafeAreaView
